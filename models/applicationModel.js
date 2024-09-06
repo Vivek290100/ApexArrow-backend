@@ -1,17 +1,13 @@
 import mongoose from 'mongoose';
 const applicationSchema = new mongoose.Schema({
     job: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "job",
         required: true
     },
     applicant: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     status: {

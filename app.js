@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 import userRoutes from './routes/userRouter.js'
 import companyRoutes from './routes/companyRouter.js'
 import jobRoutes from './routes/jobRouter.js'
+import applicationRoutes from './routes/applicationRouter.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDb from './utils/mongoDB.js'
@@ -26,6 +27,7 @@ app.use(cors(corsOptions))
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/company', companyRoutes)
 app.use('/api/v1/job', jobRoutes)
+app.use('/api/v1/application', applicationRoutes)
 
 const PORT = process.env.PORT;
 app.listen(PORT, ()=>{
