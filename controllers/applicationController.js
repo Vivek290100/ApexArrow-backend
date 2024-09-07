@@ -88,7 +88,7 @@ export const getJobApplicants = async (req, res) => {
         return res.status(404).json({message: 'Job not found', success: false})
     }
     const applications = job.applications; 
-    console.log("applications",applications);
+    // console.log("applications",applications);
     
       if(!applications){
         return res.status(404).json({message: 'No applications found', success: false})

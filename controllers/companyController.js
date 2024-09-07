@@ -25,11 +25,11 @@ export const registerCompany = async (req,res) => {
 
 
 export const getCompany = async (req, res) => {
-    // console.log("getCompanycontroller");
     
     try {
         const userId = req.id
         const companies = await Company.find({userId})
+        
         if(!companies){
             return res.status(404).json({message: 'Companies not found', success: false})
         }
