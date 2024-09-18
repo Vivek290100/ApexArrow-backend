@@ -12,11 +12,16 @@ export const register = async (req, res) => {
         .status(400)
         .json({ message: "All fields are required", success: false });
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email});
     if (user) {
       return res 
         .status(400)
         .json({ message: "Email already exists", success: false });
+    }
+
+    const userByPhoneNumber = await User.findOne({ phoneNumber });
+    if (userByPhoneNumber) {
+      return res.status(400).json({ message: "Phone number already exists", success: false });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     await User.create({
