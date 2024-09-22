@@ -111,14 +111,20 @@ export const logout = (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
+  
+  
   try {
       const { fullName, phoneNumber, email, bio, skills } = req.body;
       const file = req.file;
+      console.log("Updating", req.body);
+      console.log("file", file);
+
+
         // cloudinary
         
         let skillsArray;
         if(skills){
-            const skillsArray = skills.split(",");
+          skillsArray = skills.split(",");
         }
         const userId = req.id; //frm middleware
         // console.log("userId",userId);
@@ -134,7 +140,7 @@ export const updateProfile = async (req, res) => {
     if(fullName)user.fullName = fullName
     if(email)user.email = email
     if(phoneNumber)user.phoneNumber = phoneNumber
-    if(bio)user.bio = bio
+    if(bio)user.profile.bio = bio
     if(skills)user.profile.skills = skillsArray
 
     // (user.fullName = fullName),
@@ -146,6 +152,8 @@ export const updateProfile = async (req, res) => {
     // resume
 
     await user.save();
+    console.log("==1111===",user);
+    
 
     user = {
         _id: user._id,
@@ -156,8 +164,11 @@ export const updateProfile = async (req, res) => {
         profile: user.profile,
       };
 
+      console.log("==2222===",user);
+
+
       return res.status(200).json({ message: "Profile updated", user, success: true });
   } catch (error) {
-    console.log(error);
+    console.log("error in update profile",error);
   }
 };

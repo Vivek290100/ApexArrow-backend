@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/login', login);
 router.post('/register', singleUpload, register);
-router.put('/updateProfile', isAuthenticated, updateProfile);
+router.put('/updateProfile', isAuthenticated, singleUpload, updateProfile);
 router.get('/logout', logout);
 
 
